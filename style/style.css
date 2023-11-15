@@ -1,0 +1,36 @@
+body{
+    background-color: dodgerblue;
+    padding-bottom:50px;
+    font-weight: bold;
+}
+h3{
+    text-align: center;
+    color: white;
+    margin-bottom: 35px;
+}
+hr{
+    width: 100px;
+    height: 10px;
+    border: none;
+    border-top: 2px solid white;
+    text-align: center;
+    margin:50px auto 20px auto;
+}
+
+.container{
+    background-color: white;
+    border-radius: 7px;
+}
+
+.btn-submit{
+    width: 100%;
+    font-weight: bold;
+    color: white;
+}
+.etoile{
+    color: deepskyblue;
+}
+.info{
+    font-weight:500;
+    color:deepskyblue
+}
