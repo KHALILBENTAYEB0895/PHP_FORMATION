@@ -29,6 +29,7 @@ hr{
 }
 .etoile{
     color: deepskyblue;
+    font-weight:normal;
 }
 .info{
     font-weight:500;
