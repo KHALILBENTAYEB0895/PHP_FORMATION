@@ -31,7 +31,16 @@ hr{
     color: deepskyblue;
     font-weight:normal;
 }
-.info{
-    font-weight:500;
-    color:deepskyblue
+.comment{
+    font-weight:400;
+    color:deepskyblue;
+    font-style: italic;    
+}
+.red-comment{
+    font-weight:400;
+    color:red;
+    font-style: italic;
+}
+.tnx{
+    text-align: center;
 }
