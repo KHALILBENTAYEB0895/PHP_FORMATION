@@ -1,3 +1,20 @@
+<?php
+    $nom = $prenom = $emaIL = $tele = $msg = "";
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
+        $prenom = verifyInput($_POST["prenom"]);
+        $nom = verifyInput($_POST["nom"]);
+        $email = verifyInput($_POST["email"]);
+        $tele = verifyInput($_POST["tele"]);
+        $msg = verifyInput($_POST["msg"]);
+    }
+
+    function verifyInput($var){
+        $var = trim($var);
+        $var = stripslashes($var);
+        $var = htmlspecialchars($var);
+        return $var;
+    }
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -11,31 +28,31 @@
         <hr>
         <h3>CONTACTEZ-MOI</h3>
         <div class="container">
-            <form method="post" action="" role="form">
+            <form id="contact-form" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" role="form">
                 <div class="row justify-content-between py-4 px-3">
                     <div class="col-md-6  my-1">
                         <label for="prenom" class="form-label">Prenoms<span class="etoile">*</span></label>
-                        <input type="text" class="form-control" id="prenom" placeholder="Votre prenom">
+                        <input type="text" class="form-control" id="prenom" name="prenom" placeholder="Votre prenom" value="<?php echo $prenom ?>" required>
                         <p class="red-comment my-2">*Ces informations sont requises</p>
                     </div>
                     <div class="col-md-6  my-1">
                         <label for="nom" class="form-label">Nom<span class="etoile">*</span></label>
-                        <input type="text" class="form-control" id="nom" placeholder="Votre nom">
+                        <input type="text" class="form-control" id="nom" name="nom" placeholder="Votre nom" value="<?php echo $prenom ?>">
                         <p class="red-comment my-2">*Ces informations sont requises</p>
                     </div>
                     <div class="col-md-6  my-1">
                         <label for="email" class="form-label">Email<span class="etoile">*</span></label>
-                        <input type="email" class="form-control" id="email" placeholder="abc@xyz.com">
+                        <input type="email" class="form-control" id="email" name="email" placeholder="abc@xyz.com">
                         <p class="red-comment my-2">*Ces informations sont requises</p>
                     </div>
                     <div class="col-md-6  my-1">
                         <label for="tele" class="form-label">Telephone<span class="etoile">*</span></label>
-                        <input type="tel" class="form-control" id="tele" placeholder="Votre telephone">
+                        <input type="tel" class="form-control" id="tele" name="tele" placeholder="Votre telephone">
                         <p class="red-comment my-2">*Ces informations sont requises</p>
                     </div>
                     <div class="col my-1">
                         <label for="msg" class="form-label">Message<span class="etoile">*</span></label>
-                        <textarea class="form-control" id="msg" rows="3" placeholder="Votre message"></textarea>
+                        <textarea class="form-control" id="msg" name="msg" rows="3" placeholder="Votre message" ></textarea>
                         <p class="comment my-4">*Ces informations sont requises</p>
                     </div>
                     <div class="col-12">
