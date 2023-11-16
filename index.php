@@ -1,11 +1,29 @@
 <?php
-    $nom = $prenom = $emaIL = $tele = $msg = "";
+    $nomError = $prenomError = $emailError = $teleError = $msgError = "";
+    $nom = $prenom = $email = $tele = $msg = "";
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         $prenom = verifyInput($_POST["prenom"]);
         $nom = verifyInput($_POST["nom"]);
         $email = verifyInput($_POST["email"]);
         $tele = verifyInput($_POST["tele"]);
         $msg = verifyInput($_POST["msg"]);
+
+        if(empty($prenom)){
+            $prenomError = "*Merci de saisir votre prenom";
+        }
+        if(empty($nom)){
+            $nomError = "*Merci de saisir votre nom";
+        }
+        if(empty($email)){
+            $emailError = "*Merci de saisir votre email";
+        }
+        if(empty($tele)){
+            $teleError = "*Merci de saisir votre tele";
+        }
+        if(empty($msg)){
+            $msgError = "*Merci de saisir votre msg";
+        }
+        
     }
 
     function verifyInput($var){
@@ -32,28 +50,28 @@
                 <div class="row justify-content-between py-4 px-3">
                     <div class="col-md-6  my-1">
                         <label for="prenom" class="form-label">Prenoms<span class="etoile">*</span></label>
-                        <input type="text" class="form-control" id="prenom" name="prenom" placeholder="Votre prenom" value="<?php echo $prenom ?>" required>
-                        <p class="red-comment my-2">*Ces informations sont requises</p>
+                        <input type="text" class="form-control" id="prenom" name="prenom" placeholder="Votre prenom">
+                        <p class="red-comment my-2"><?php echo $prenomError; ?></p>
                     </div>
                     <div class="col-md-6  my-1">
                         <label for="nom" class="form-label">Nom<span class="etoile">*</span></label>
-                        <input type="text" class="form-control" id="nom" name="nom" placeholder="Votre nom" value="<?php echo $prenom ?>">
-                        <p class="red-comment my-2">*Ces informations sont requises</p>
+                        <input type="text" class="form-control" id="nom" name="nom" placeholder="Votre nom">
+                        <p class="red-comment my-2"><?php echo $nomError; ?></p>
                     </div>
                     <div class="col-md-6  my-1">
                         <label for="email" class="form-label">Email<span class="etoile">*</span></label>
                         <input type="email" class="form-control" id="email" name="email" placeholder="abc@xyz.com">
-                        <p class="red-comment my-2">*Ces informations sont requises</p>
+                        <p class="red-comment my-2"><?php echo $emailError; ?></p>
                     </div>
                     <div class="col-md-6  my-1">
                         <label for="tele" class="form-label">Telephone<span class="etoile">*</span></label>
                         <input type="tel" class="form-control" id="tele" name="tele" placeholder="Votre telephone">
-                        <p class="red-comment my-2">*Ces informations sont requises</p>
+                        <p class="red-comment my-2"><?php echo $teleError; ?></p>
                     </div>
                     <div class="col my-1">
                         <label for="msg" class="form-label">Message<span class="etoile">*</span></label>
-                        <textarea class="form-control" id="msg" name="msg" rows="3" placeholder="Votre message" ></textarea>
-                        <p class="comment my-4">*Ces informations sont requises</p>
+                        <textarea class="form-control" id="msg" name="msg" rows="3" placeholder="Votre message"></textarea>
+                        <p class="comment my-4"><?php echo $msgError; ?></p>
                     </div>
                     <div class="col-12">
                         <input class="btn btn-warning btn-submit" type="submit" value="ENVOYER">
