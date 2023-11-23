@@ -2,6 +2,7 @@
     $nomError = $prenomError = $emailError = $teleError = $msgError = "";
     $nom = $prenom = $email = $tele = $msg = "";
     $isSucces = false;
+    $emailTo = "khaliil.bentayeb@gmail.com";
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         $prenom = verifyInput($_POST["prenom"]);
         $nom = verifyInput($_POST["nom"]);
@@ -9,26 +10,42 @@
         $tele = verifyInput($_POST["tele"]);
         $msg = verifyInput($_POST["msg"]);
         $isSucces = true;
+        $emailText = "";
 
         if(empty($prenom)){
             $prenomError = "*Merci de saisir votre prenom";
             $isSucces = false;
+        }else{
+            $emailText .="firstName: $prenom\n";
         }
         if(empty($nom)){
             $nomError = "*Merci de saisir votre nom";
             $isSucces = false;
+        }else{
+            $emailText .="Name: $nom\n";
         }
         if(!isValidEmail($email)){
             $emailError = "*Merci de saisir votre email";
             $isSucces = false;
+        }else{
+            $emailText .="Email: $email\n";
         }
         if(!isValidPhone($tele)){
             $teleError = "*Merci de saisir votre tele";
             $isSucces = false;
+        }else{
+            $emailText .="Phone: $tele\n";
         }
         if(empty($msg)){
             $msgError = "*Merci de saisir votre msg";
             $isSucces = false;
+        }else{
+            $emailText .="Message: $msg\n";
+        }
+        if($isSucces){
+            $header="From :$prenom $nom <$email> \r\nReplay-To: $email";
+            mail($emailTo,"un message de votre site",$emailText,$header);
+            $nom = $prenom = $email = $tele = $msg = "";
         }
     }
 
